@@ -404,3 +404,19 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+# MCP Server specific
+*.csproj.user
+launchSettings.json
+
+# OS specific
+.DS_Store
+Thumbs.db
+
+# Environment files
+.env
+.env.local
+
+# Claude-specific files (keep local only)
+.claude/
+CLAUDE.md
