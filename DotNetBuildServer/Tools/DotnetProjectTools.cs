@@ -257,32 +257,6 @@ public class DotnetProjectTools
         }
     }
 
-    [McpServerTool, Description("Run unit tests in a .NET test project. Optionally filter tests, specify configuration, and collect code coverage. Supports both WSL and Windows paths.")]
-    public static async Task<string> RunTests(string projectPath, string? configuration = "Debug", string? filter = null, bool collectCoverage = false)
-    {
-        try
-        {
-            projectPath = PathConverter.ConvertPath(projectPath);
-            var args = $"test \"{projectPath}\" --configuration {configuration}";
-            
-            if (!string.IsNullOrEmpty(filter))
-            {
-                args += $" --filter \"{filter}\"";
-            }
-            
-            if (collectCoverage)
-            {
-                args += " --collect:\"Code Coverage\"";
-            }
-
-            var projectDir = Path.GetDirectoryName(projectPath);
-            return await ExecuteDotnetCommand(args, projectDir);
-        }
-        catch (Exception ex)
-        {
-            return $"Error running tests: {ex.Message}";
-        }
-    }
 
     private static async Task<string> ExecuteDotnetCommand(string arguments, string? workingDirectory = null)
     {
